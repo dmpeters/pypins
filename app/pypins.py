@@ -14,10 +14,10 @@ app.config.update(
     DEBUG=True,
 
 	# database
-	DATABASE_URI = 'PATH_TO_DATABASE'
+	DATABASE_URI = 'PATH_TO_DATABASE',
 
     # Secret Key
-    SECRET_KEY = 'nzaka2b^az_)&ea_@8znn^o8o5r*p=&22!36kaa$2#+6wf)k4#'
+    SECRET_KEY = 'SECRET_KEY'
 )
 toolbar = DebugToolbarExtension(app)
 oauth = OAuth()
