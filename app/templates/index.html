@@ -7,7 +7,9 @@
 		<h1 class="pull-left">Pypins Logo</h1>
         <h1 class="pull-right">
             {% if g.user %}
-                <a href="{{ url_for('logout') }}">sign out [{{ g.user.name }}]</a>
+                {{ g.user.name }}
+                <img src="http://api.twitter.com/1/users/profile_image?screen_name={{ g.user.name }}&size=normal" />
+                <a href="{{ url_for('logout') }}">(logout)</a>
             {% else %}
                 <a href="/login">Login</a>
             {% endif %}
