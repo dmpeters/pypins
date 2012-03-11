@@ -4,8 +4,6 @@ from fabric.api import local
 from fabric.api import task
 from fabric.api import settings
 from fabric.api import lcd
-from fabric.api import execute
-from fabric.api import parallel
 
 from multiprocessing import Process
 
