@@ -5,7 +5,12 @@
 <div class="container">
 	<header class="jumbotron subhead" id="overview">
 		<h1 class="pull-left">Pypins Logo</h1>
-		<h1 class="pull-right"><a href="/login">Login</a></h1>
+        <h1 class="pull-right">
+            {% if g.user %}
+                <a href="{{ url_for('logout') }}">sign out [{{ g.user.name }}]</a>
+            {% else %}
+                <a href="/login">Login</a>
+            {% endif %}
 	</header>
 </div>
 <div class="container index">
