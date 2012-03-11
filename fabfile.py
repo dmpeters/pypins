@@ -15,3 +15,7 @@ def create_database():
 def populate_catalog():
     with lcd("scheduler"):
         local("python populate_catalog.py")
+
+@task
+def sass(watch="./app/static/css/src", css="./app/static/css"):
+	local("sass --style extended --watch  %s:%s")
