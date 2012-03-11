@@ -5,6 +5,9 @@ from fabric.api import task
 from fabric.api import settings
 from fabric.api import lcd
 from fabric.api import execute
+from fabric.api import parallel
+
+from multiprocessing import Process
 
 @task 
 def create_database():
@@ -19,9 +22,17 @@ def populate_catalog():
 
 @task 
 def start(target="app/pypins.py"):
-    execute(sass)
+    s = Process(target=sass)
+    a = Process(target=application, args=(target, ))
+    s.start()
+    a.start()
+    a.join()
+
+
+@task
+def application(target="app/pypins.py"):
     local("python {}".format(target))
 
 @task
 def sass(watch="./app/static/css/src", css="./app/static/css"):
-	local("sass --style extended --watch {} {}".format(watch, css))
+    local("sass --style extended --watch {}:{}".format(watch, css))
