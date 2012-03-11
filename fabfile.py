@@ -18,4 +18,4 @@ def populate_catalog():
 
 @task
 def sass(watch="./app/static/css/src", css="./app/static/css"):
-	local("sass --style extended --watch  %s:%s")
+	local("sass --style extended --watch {} {}".format(watch, css))
