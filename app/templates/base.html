@@ -1,0 +1,16 @@
+<!DOCTYPE HTML>
+<html lang="en-US">
+	<head>
+		<meta charset="UTF-8">
+	    {% block head %}
+	        <title>Pypins | {% block title %}{% endblock %}</title>
+	        {% include '_head.html' %}
+	    {% endblock %}
+	</head>
+	<body>
+		{% include '_header.html' %}
+		
+		{% block content %}{% endblock %}
+
+	</body>
+</html>
