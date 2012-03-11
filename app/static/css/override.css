@@ -1,0 +1,12 @@
+.navbar-inner {
+  border-radius: 0px; }
+
+.index {
+  margin: 5% auto; }
+.index form {
+  text-align: center; }
+.index form input {
+  color: #000;
+  font-size: 45px;
+  height: 60px;
+  width: 400px; }

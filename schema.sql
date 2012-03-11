@@ -9,7 +9,6 @@ CREATE TABLE packages (
 CREATE TABLE "users" (
 "user_id" integer PRIMARY KEY AUTOINCREMENT,
 "name" string NOT NULL,
-"password" string NOT NULL,
 "oauth_token" string NOT NULL,
 "oauth_secret" string NOT NULL
 );

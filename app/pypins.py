@@ -11,8 +11,9 @@ from sqlalchemy.orm import scoped_session, sessionmaker
 from sqlalchemy.ext.declarative import declarative_base
 
 # configuration
-DATABASE_URI = 'sqlite:///../pypins.db'
+DATABASE_URI = 'sqlite:///./pypins.db'
 SECRET_KEY = 'sirl1@$l9oz%x&32l0cv8n0^s9fw8r$!cll5yto0ih_hd+eqs!(y%pypins'
+DEBUG_TB_INTERCEPT_REDIRECTS = False
 DEBUG=True
 
 # flask
@@ -73,18 +74,46 @@ def get_twitter_token():
 def index():
     return render_template('index.html')
 
-
 # Login
 @app.route('/login')
 def login():
-    return render_template('login.html')
+    return twitter.authorize(callback=url_for('oauth_authorized',
+        next=request.args.get('next') or request.referrer or None))
 
+# Logout
+@app.route('/logout')
+def logout():
+    session.pop('user_id', None)
+    flash('You were signed out')
+    return redirect(request.referrer or url_for('index'))
+
+# authorize
+@app.route('/oauth-authorized')
+@twitter.authorized_handler
+def oauth_authorized(resp):
+    next_url = request.args.get('next') or url_for('index')
+    if resp is None:
+        flash(u'You denied the request to sign in.')
+        return redirect(next_url)
+
+    user = User.query.filter_by(name=resp['screen_name']).first()
+
+    if user is None:
+        user = User(resp['screen_name'])
+        db_session.add(user)
+
+    user.oauth_token = resp['oauth_token']
+    user.oauth_secret = resp['oauth_token_secret']
+    db_session.commit()
+
+    session['user_id'] = user.id
+    flash('You were signed in')
+    return redirect(next_url)
 
 # List
 @app.route('/list')
 def list():
     return render_template('list.html')
-
 
 # Results
 @app.route('/results')

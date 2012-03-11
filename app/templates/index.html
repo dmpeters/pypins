@@ -4,74 +4,13 @@
 
 <div class="container">
 	<header class="jumbotron subhead" id="overview">
-		<h1>Subscriptions</h1>
+		<h1 class="pull-left">Pypins Logo</h1>
+		<h1 class="pull-right"><a href="/login">Login</a></h1>
 	</header>
 </div>
-<hr />
-<br />
-<div class="container" id='start-message'>
-	<h2>Pssst!</h2>
-	<h3>You don't have any Subscriptions yet.</h3>
-	<p>
-		That's ok, just search for a pip up top and you'll be on your way. Don't worry, we'll walk you through it.
-	</p>
+<div class="container index">
+	<form class="search" action="">
+		<input type="text" class="search-query" placeholder="Search">
+	</form>
 </div>
-<hr />
-<div class="container">
-	<div class="row">
-		<div class="">
-			<h2>
-			Your Subscriptions:
-			<small>
-				go ahead... click one
-			</small>
-			</h2>
-			<table class="table table-bordered table-striped" id="channels-table">
-				<thead>
-					<tr>
-						<th>Name</th>
-						<th></th>
-					</tr>
-				</thead>
-				<tbody>
-
-					<tr>
-						<td>
-						<a href="">label</a>
-						</td>
-						<td>
-						&nbsp;
-						<a class='btn btn-danger'>
-							Remove
-						</a>
-						</td>
-					</tr>
-				</tbody>
-			</table>
-		</div>
-	</div>
-	<div class="pagination pagination-centered">
-		<ul>
-			<li class="disabled">
-				<a href="#">&laquo;</a>
-			</li>
-			<li class="active">
-				<a href="#">1</a>
-			</li>
-			<li>
-				<a href="#">2</a>
-			</li>
-			<li>
-				<a href="#">3</a>
-			</li>
-			<li>
-				<a href="#">4</a>
-			</li>
-			<li>
-				<a href="#">&raquo;</a>
-			</li>
-		</ul>
-	</div>
-</div>
-
 {% endblock %}
