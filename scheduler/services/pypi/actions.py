@@ -1,7 +1,9 @@
-
 from abc import ABCMeta
 from abc import abstractmethod
 from services.pypi.xmlrpc import PypiXmlRpcService
+from repositories.dao.sqlite.package import Package
+from services.packages.sql import SqlPackageService
+
 
 pypi_service = PypiXmlRpcService()
 
@@ -22,8 +24,13 @@ class FetchCatalog(PypiTask):
 
     def execute(self):
         packages = self.service.list_packages()
-        for name in packages:
-            print name
+        service = SqlPackageService()
+        
+        with service:
+            for name in packages:
+                package = Package()
+                package.name = name
+                service.add_package(package)
 
 class FetchChangeLog(PypiTask):
     
