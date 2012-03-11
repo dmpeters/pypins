@@ -7,12 +7,10 @@ from services.pypi.actions import FetchCatalog
 from services.pypi.actions import FetchChangeLog
 from services.eventscheduler import EventScheduler
 
+from pypins.services.users.sql import SqlUserService
 
 def main():
     scheduler = EventScheduler()
-
-    
-    service = SqlUserService()
 
     #scheduler.schedule_interval_task(FetchCatalog(), hours=24)
     #scheduler.schedule_interval_task(FetchChangeLog(), seconds=10)
