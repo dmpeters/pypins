@@ -4,6 +4,7 @@ from fabric.api import local
 from fabric.api import task
 from fabric.api import settings
 from fabric.api import lcd
+from fabric.api import execute
 
 @task 
 def create_database():
@@ -16,6 +17,10 @@ def populate_catalog():
     with lcd("scheduler"):
         local("python populate_catalog.py")
 
+@task 
+def start(target="app/pypins.py"):
+    execute(sass)
+    local()
 @task
 def sass(watch="./app/static/css/src", css="./app/static/css"):
 	local("sass --style extended --watch {} {}".format(watch, css))
