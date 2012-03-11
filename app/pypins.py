@@ -6,7 +6,7 @@ from sqlalchemy.orm import scoped_session, sessionmaker
 from sqlalchemy.ext.declarative import declarative_base
 
 # configuration
-DATABASE_URI = 'PATH_TO_DATABASE'
+# DATABASE_URI = 'PATH_TO_DATABASE'
 SECRET_KEY = 'development key'
 DEBUG = True
 
@@ -27,14 +27,14 @@ twitter = oauth.remote_app('twitter',
 )
 
 # setup sqlalchemy
-engine = create_engine(DATABASE_URI)
-db_session = scoped_session(sessionmaker(autocommit=False, autoflush=False, bind=engine))
-Base = declarative_base()
-Base.query = db_session.query_property()
-
-
-def init_db():
-    Base.metadata.create_all(bind=engine)
+# engine = create_engine(DATABASE_URI)
+# db_session = scoped_session(sessionmaker(autocommit=False, autoflush=False, bind=engine))
+# Base = declarative_base()
+# Base.query = db_session.query_property()
+# 
+# 
+# def init_db():
+#     Base.metadata.create_all(bind=engine)
 
 
 @app.route('/')
