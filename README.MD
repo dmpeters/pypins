@@ -1,1 +1,0 @@
-# pypins - pypi notification manager
