@@ -1,1 +1,1 @@
-pypins - pypi notification manager
+# pypins - pypi notification manager
