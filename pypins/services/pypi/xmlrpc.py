@@ -14,3 +14,7 @@ class PypiXmlRpcService(object):
         since the given timestamp. All timestamps are UTC values. The 
         argument is a UTC integer seconds since the epoch.'''
         return self.client.changelog(since)
+
+    def search(self, query):
+        '''Search the package database using the indicated search spec.'''
+        return self.client.search({'name': query, 'description': query}, 'or')
