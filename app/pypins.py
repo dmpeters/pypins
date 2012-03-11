@@ -1,29 +1,36 @@
 from flask import Flask, request, redirect, url_for, session, flash, g, render_template
 from flaskext.oauth import OAuth
+from flask_debugtoolbar import DebugToolbarExtension
 
 from sqlalchemy import create_engine, Column, Integer, String
 from sqlalchemy.orm import scoped_session, sessionmaker
 from sqlalchemy.ext.declarative import declarative_base
 
 # configuration
-# DATABASE_URI = 'PATH_TO_DATABASE'
-SECRET_KEY = 'development key'
-DEBUG = True
-
-# setup flask
 app = Flask(__name__)
-app.debug = DEBUG
-app.secret_key = SECRET_KEY
+app.config.from_object(__name__)
+app.config.update(
+    # debug
+    DEBUG=True,
+
+	# database
+	DATABASE_URI = 'PATH_TO_DATABASE'
+
+    # Secret Key
+    SECRET_KEY = 'nzaka2b^az_)&ea_@8znn^o8o5r*p=&22!36kaa$2#+6wf)k4#'
+)
+toolbar = DebugToolbarExtension(app)
 oauth = OAuth()
+
 
 # The Twitter
 twitter = oauth.remote_app('twitter',
 	base_url='http://api.twitter.com/1/',
-    request_token_url='http://api.twitter.com/oauth/request_token',
+	request_token_url='http://api.twitter.com/oauth/request_token',
 	access_token_url='http://api.twitter.com/oauth/access_token',
-    authorize_url='http://api.twitter.com/oauth/authenticate',
-    consumer_key='TWITTER_KEY',
-    consumer_secret='TWITTER_SECRET'
+	authorize_url='http://api.twitter.com/oauth/authenticate',
+	consumer_key='TWITTER_KEY',
+	consumer_secret='TWITTER_SECRET'
 )
 
 # setup sqlalchemy

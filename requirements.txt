@@ -1,10 +1,12 @@
 APScheduler==2.0.2
 Fabric==1.4.0
 Flask==0.8
+Flask-DebugToolbar==0.6.2
 Flask-OAuth==0.11
 Jinja2==2.6
 SQLAlchemy==0.7.5
 Werkzeug==0.8.3
+blinker==1.2
 distribute==0.6.24
 httplib2==0.7.4
 oauth2==1.5.211
