@@ -23,8 +23,6 @@ def start(target="app/pypins.py"):
     a = Process(target=application, args=(target, ))
     s.start()
     a.start()
-    a.join()
-
 
 @task
 def application(target="app/pypins.py"):
