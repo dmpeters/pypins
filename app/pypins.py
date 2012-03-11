@@ -10,8 +10,6 @@ from sqlalchemy import create_engine, Column, Integer, String
 from sqlalchemy.orm import scoped_session, sessionmaker
 from sqlalchemy.ext.declarative import declarative_base
 
-
-
 # configuration
 DATABASE_URI = 'sqlite:///../pypins.db'
 SECRET_KEY = 'sirl1@$l9oz%x&32l0cv8n0^s9fw8r$!cll5yto0ih_hd+eqs!(y%pypins'
@@ -43,6 +41,32 @@ Base.query = db_session.query_property()
 def init_db():
     Base.metadata.create_all(bind=engine)
 
+class User(Base):
+	__tablename__ = 'users'
+	id = Column('user_id', Integer, primary_key=True)
+	name = Column(String(60))
+	oauth_token = Column(String(200))
+	oauth_secret = Column(String(200))
+	
+	def __init__(self, name):
+		self.name = name
+
+@app.before_request
+def before_request():
+	g.user = None
+	if 'user_id' in session:
+		g.user = User.query.get(session['user_id'])
+
+@app.after_request
+def after_request(response):
+	db_session.remove()
+	return response
+
+@twitter.tokengetter
+def get_twitter_token():
+	user = g.user
+	if user is not None:
+		return user.oauth_token, user.oauth_secret
 
 # Index
 @app.route('/')
