@@ -2,6 +2,7 @@ APScheduler==2.0.2
 Fabric==1.4.0
 Flask==0.8
 Jinja2==2.6
+SQLAlchemy==0.7.5
 Werkzeug==0.8.3
 distribute==0.6.24
 pycrypto==2.5
