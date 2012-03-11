@@ -1,3 +1,7 @@
+import sys
+# so we can include the pypins package in the search path
+sys.path.append("../")
+
 from flask import Flask, request, redirect, url_for, session, flash, g, render_template
 from flaskext.oauth import OAuth
 from flask_debugtoolbar import DebugToolbarExtension
@@ -5,6 +9,8 @@ from flask_debugtoolbar import DebugToolbarExtension
 from sqlalchemy import create_engine, Column, Integer, String
 from sqlalchemy.orm import scoped_session, sessionmaker
 from sqlalchemy.ext.declarative import declarative_base
+
+
 
 # configuration
 DATABASE_URI = 'sqlite:///../pypins.db'

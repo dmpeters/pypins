@@ -1,9 +1,9 @@
+import time
 from abc import ABCMeta
 from abc import abstractmethod
-from services.pypi.xmlrpc import PypiXmlRpcService
-from repositories.dao.sqlite.package import Package
-from services.packages.sql import SqlPackageService
-
+from pypins.services.pypi.xmlrpc import PypiXmlRpcService
+from pypins.services.packages.sql import SqlPackageService
+from pypins.dao.sql.models import Package
 
 pypi_service = PypiXmlRpcService()
 
@@ -38,4 +38,9 @@ class FetchChangeLog(PypiTask):
         self.service = pypi_service
 
     def execute(self):
-        print("FETCH CHANGES")
+        since = int(time.time()) - 86400
+        changelog = self.service.changelog(since)
+        # changelog is a list of tuples:
+        # (name, version, timestamp, action) 
+        for result in changelog:
+            print(result)
