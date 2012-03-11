@@ -20,7 +20,8 @@ def populate_catalog():
 @task 
 def start(target="app/pypins.py"):
     execute(sass)
-    local()
+    local("python {}".format(target))
+
 @task
 def sass(watch="./app/static/css/src", css="./app/static/css"):
 	local("sass --style extended --watch {} {}".format(watch, css))
