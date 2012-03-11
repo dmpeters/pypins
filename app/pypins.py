@@ -37,9 +37,28 @@ twitter = oauth.remote_app('twitter',
 #     Base.metadata.create_all(bind=engine)
 
 
+# Index
 @app.route('/')
 def index():
     return render_template('index.html')
+
+
+# Login
+@app.route('/login')
+def login():
+    return render_template('login.html')
+
+
+# List
+@app.route('/list')
+def list():
+    return render_template('list.html')
+
+
+# Results
+@app.route('/results')
+def results():
+    return render_template('results.html')
 
 
 if __name__ == '__main__':
