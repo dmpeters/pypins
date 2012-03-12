@@ -9,14 +9,13 @@ from pypins.dao.sql.base import Base
 
 # user_package = Table('user_package', Base.metadata,
 #     Column('user_id', Integer, ForeignKey('users.user_id'), primary_key=True),
-#     Column('package_id', Integer, ForeignKey('packages.package_id'), primary_key=True)
+#     Column('package_name', Integer, ForeignKey('packages.name'), primary_key=True)
 # )
 
 class UserPackage(Base):
     __tablename__ = 'users_packages'
-    subscription_id = Column(Integer, primary_key=True)
-    user_id = Column(Integer, ForeignKey('users.user_id'))
-    package_id = Column(Integer, ForeignKey('packages.package_id'))
+    user_id = Column(Integer, ForeignKey('users.user_id'), primary_key=True)
+    package_name = Column(Integer, ForeignKey('packages.name'), primary_key=True)
     package = relationship("Package", backref="user_assocs")
 
 class Package(Base):

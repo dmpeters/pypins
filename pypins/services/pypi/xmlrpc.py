@@ -1,4 +1,6 @@
 import xmlrpclib
+from pypins.dao.services.models import PackageChangelog
+from pypins.services.pypi.mock import changelog
 class PypiXmlRpcService(object):
     
     def __init__(self):
@@ -13,7 +15,8 @@ class PypiXmlRpcService(object):
         '''Retrieve a list of four-tuples (name, version, timestamp, action) 
         since the given timestamp. All timestamps are UTC values. The 
         argument is a UTC integer seconds since the epoch.'''
-        return self.client.changelog(since)
+        #return PackageChangelog(self.client.changelog(since)) 
+        return PackageChangelog(changelog) 
 
     def search(self, query):
         '''Search the package database using the indicated search spec.'''
