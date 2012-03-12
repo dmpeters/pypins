@@ -8,10 +8,15 @@ from services.pypi.actions import FetchChangeLog
 from services.eventscheduler import EventScheduler
 
 from pypins.services.users.sql import SqlUserService
+from pypins.services.packages.sql import SqlPackageService
 
 def main():
     scheduler = EventScheduler()
 
+    #s = SqlPackageService()
+    #with s:
+    #    s.remove_subscription(1, "nous.migration")
+    FetchChangeLog().execute()
     #scheduler.schedule_interval_task(FetchCatalog(), hours=24)
     #scheduler.schedule_interval_task(FetchChangeLog(), seconds=10)
 
