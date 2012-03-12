@@ -111,8 +111,9 @@ def oauth_authorized(resp):
     return redirect(next_url)
 
 # List
-@app.route('/list')
-def list():
+@app.route('/<username>')
+def list(username):
+    username = g.user
     return render_template('list.html')
 
 # Results

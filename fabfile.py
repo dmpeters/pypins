@@ -19,14 +19,14 @@ def populate_catalog():
 
 @task 
 def start(target="app/pypins.py"):
-    a = Process(target=application, args=(target, ))
+    a = Process(target=run, args=(target, ))
     s = Process(target=sass)
     a.start()
     s.start()
     
 
 @task
-def application(target="app/pypins.py"):
+def run(target="app/pypins.py"):
     local("python {}".format(target))
 
 @task
