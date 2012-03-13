@@ -1,5 +1,6 @@
 import xmlrpclib
 from pypins.dao.services.models import PackageChangelog
+from pypins.dao.services.models import SearchResultCollection
 from pypins.services.pypi.mock import changelog
 class PypiXmlRpcService(object):
     
@@ -20,4 +21,5 @@ class PypiXmlRpcService(object):
 
     def search(self, query):
         '''Search the package database using the indicated search spec.'''
-        return self.client.search({'name': query, 'description': query}, 'or')
+        return SearchResultCollection(self.client.search({'name': query, 'summary':query}, 'or'))
+        #return self.client.search({'name': query, 'summary':query}, 'or')
